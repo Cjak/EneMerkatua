@@ -88,8 +88,13 @@
 			?>
 			<?php if(isset($_POST['action'])){ 
 			if($_POST['action'] == "delete"){ 
-			SPDO::getInstance()->query("DELETE FROM items WHERE id = ".$_POST['id']);			
-			} }	
+			SPDO::getInstance()->query("DELETE FROM items WHERE id = ".$_POST['id']);
+			$filename = '/images/'.$_POST['id'].'.jpg';
+
+			if (file_exists($filename)) {
+				unlink( $filename );
+			}
+			} }
 			?>
 
 <!------------------------------------------- AFFICHAGE DES PANELS -------------------------------------------------------------------->		
@@ -115,6 +120,7 @@
 
 			
 		</div>
+		
 		
 		<!------------------------- FOOTERS -------------------------------------------------------------------------------------------->					
 		<div class="container-fluid" style="background-color:#CF072C">
